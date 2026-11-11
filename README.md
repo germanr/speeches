@@ -1,4 +1,4 @@
-# Speeches website sketches
+# Two Centuries of Presidential Speeches: website sketches
 
 Design sketches for the website that will accompany *From Warfare to Welfare: Leaders, Eras, and the Evolution of Policy Attention* (Calvo-González, Eizmendi and Reyes).
 
