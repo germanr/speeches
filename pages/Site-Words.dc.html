@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Words: how often presidents used a word</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<a id="sketch-back" href="../sketches.html" style="position:fixed;right:16px;bottom:16px;z-index:2147483647;padding:8px 14px;border-radius:999px;background:#17171A;color:#FFFFFF;font:600 13px/1.2 Archivo,'Helvetica Neue',Arial,sans-serif;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.2)">&larr; All sketches</a>
+<script>if(location.hash==="#thumb")document.getElementById("sketch-back").hidden=true</script>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Piazzolla:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;display=swap">
+<style>
+body{margin:0;background:#FCFCFA}
+a{color:#17171A;text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:#000000;text-decoration-thickness:2px}
+</style>
+</helmet>
+<div style="background: #FCFCFA; color: #17171A; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif">
+
+<header style="background: #FCFCFA; border-bottom: 1px solid #E2E0D8">
+<div style="max-width: 1280px; margin: 0 auto; padding: 16px 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 32px">
+<a href="Site-Home-Paper.dc.html" style="display: flex; flex-direction: column; gap: 3px; text-decoration: none; color: #17171A">
+<span style="font-family: Piazzolla, Georgia, serif; font-size: 21px; font-weight: 600; line-height: 1.15">Latin American Presidential Speeches</span>
+<span style="font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: #6B6862">Annual speeches to congress, 1819–2026</span>
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 24px; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-size: 15px">
+<a href="Site-Home-Paper.dc.html" style="color: #17171A; text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent">Home</a>
+<a href="Site-Words.dc.html" aria-current="page" style="color: #17171A; text-decoration: none; font-weight: 600; padding: 6px 0; border-bottom: 2px solid #17171A">Words</a>
+<a href="Site-Atlas.dc.html" style="color: #17171A; text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent">Topics</a>
+<a href="Site-Download.dc.html" style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 6px; background: #17171A; color: #FFFFFF; text-decoration: none; font-weight: 600">Download the speeches</a>
+<span style="display: flex; align-items: center; gap: 10px; padding-left: 16px; border-left: 1px solid #E2E0D8; font-size: 14px"><span style="font-weight: 600">EN</span><a href="Paper-Phone-ES.dc.html" lang="es" style="color: #4A4844">ES</a></span>
+</nav>
+</div>
+</header>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 40px 32px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+<h1 style="margin: 0; font-family: Piazzolla, Georgia, serif; font-size: clamp(32px, 3.8vw, 46px); font-weight: 600; line-height: 1.08; letter-spacing: -0.01em">How often presidents used a word, 1820–2026</h1>
+<p style="margin: 0; max-width: 760px; font-size: 18px; line-height: 1.55; color: #3F4247">Search any word in the speeches. See how often presidents used it in each decade and country, and download every sentence that uses it.</p>
+<form style="display: flex; flex-wrap: wrap; gap: 10px; max-width: 760px" onSubmit="{{noSubmit}}">
+<label style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #4A4D53">Word or phrase, in Spanish
+<input type="search" value="{{query}}" onChange="{{onQuery}}" style="min-height: 52px; padding: 0 16px; border: 2px solid #121315; border-radius: 8px; font-family: Piazzolla, Georgia, serif; font-size: 22px; color: #121315; background: #FFFFFF">
+</label>
+<button type="submit" style="align-self: flex-end; min-height: 52px; padding: 0 24px; border: 0; border-radius: 8px; background: #121315; color: #FFFFFF; font-family: inherit; font-size: 16px; font-weight: 600">Search</button>
+</form>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<span style="font-size: 14px; color: #5D6066; margin-right: 4px">Try:</span>
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="8">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" style="min-height: 38px; padding: 0 14px; border-radius: 999px; font-family: Piazzolla, Georgia, serif; font-size: 16px; font-style: italic; cursor: pointer; {{c.style}}">{{c.word}}</button>
+</sc-for>
+</div>
+<sc-if value="{{notFound}}" hint-placeholder-val="{{false}}">
+<p style="margin: 0; font-size: 14px; color: #8A4B00">This sketch has eight words. The site will search any word or phrase.</p>
+</sc-if>
+</section>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 34px 32px 0; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 32px; border-top: 1px solid #E5E6E8; padding-top: 26px">
+<p style="margin: 0; font-family: Piazzolla, Georgia, serif; font-size: clamp(48px, 6vw, 76px); font-weight: 600; font-style: italic; line-height: 0.95">{{word}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 32px">
+<div><p style="margin: 0; font-size: 26px; font-weight: 700">{{totalText}}</p><p style="margin: 2px 0 0; font-size: 13px; color: #5D6066">mentions</p></div>
+<div><p style="margin: 0; font-size: 26px; font-weight: 700">{{docsText}}</p><p style="margin: 2px 0 0; font-size: 13px; color: #5D6066">speeches that use it</p></div>
+<div><p style="margin: 0; font-size: 26px; font-weight: 700">{{peakText}}</p><p style="margin: 2px 0 0; font-size: 13px; color: #5D6066">peak decade</p></div>
+</div>
+</div>
+<p style="margin: 22px 0 8px; font-size: 14px; font-weight: 600; color: #4A4D53">Mentions per 10,000 words, all countries</p>
+<div style="display: flex; gap: 10px">
+<div style="width: 44px; flex: none; height: 220px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-size: 12px; color: #5D6066"><span>{{axisMax}}</span><span>0</span></div>
+<div style="flex: 1; min-width: 0">
+<div role="img" aria-label="{{chartLabel}}" style="height: 220px; display: flex; align-items: flex-end; gap: 4px; border-bottom: 1px solid #A7AAB0; background-image: linear-gradient(#EEF0F2 1px, transparent 1px); background-size: 100% 55px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="21">
+<div title="{{b.title}}" style="flex: 1; min-width: 0; position: relative; border-radius: 4px 4px 0 0; {{b.style}}">
+<sc-if value="{{b.isPeak}}" hint-placeholder-val="{{false}}">
+<span style="position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 4px; font-size: 12px; font-weight: 700; white-space: nowrap">{{b.value}}</span>
+</sc-if>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; gap: 4px; margin-top: 6px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="21">
+<span style="flex: 1; min-width: 0; text-align: center; font-size: 11px; color: #5D6066">{{b.tick}}</span>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 34px 32px 0; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; color: #4A4D53">By country and decade</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; font-size: 12px; color: #5D6066">
+<span style="display: flex; align-items: center; gap: 5px"><span style="width: 14px; height: 12px; border-radius: 2px; background: #F6F6F7; box-shadow: inset 0 0 0 1px #E1E2E5"></span>No speeches</span>
+<span style="display: flex; align-items: center; gap: 5px"><span style="width: 14px; height: 12px; border-radius: 2px; background: #EEF0F3"></span>Not used</span>
+<span style="display: flex; align-items: center; gap: 2px">Less<span style="width: 14px; height: 12px; border-radius: 2px; background: #b7d3f6; margin-left: 5px"></span><span style="width: 14px; height: 12px; border-radius: 2px; background: #6da7ec"></span><span style="width: 14px; height: 12px; border-radius: 2px; background: #2a78d6"></span><span style="width: 14px; height: 12px; border-radius: 2px; background: #1c5cab"></span><span style="width: 14px; height: 12px; border-radius: 2px; background: #0d366b; margin-right: 5px"></span>More</span>
+</div>
+</div>
+<div style="overflow-x: auto; margin-top: 12px">
+<div style="min-width: 860px; display: flex; flex-direction: column; gap: 3px">
+<sc-for list="{{heat}}" as="h" hint-placeholder-count="11">
+<div style="display: flex; align-items: center; gap: 3px">
+<span style="width: 130px; flex: none; font-size: 13px; color: #2B2E33">{{h.name}}</span>
+<sc-for list="{{h.cells}}" as="x" hint-placeholder-count="21">
+<span title="{{x.title}}" style="flex: 1; height: 20px; border-radius: 2px; {{x.style}}"></span>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 38px 32px 0; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 28px">
+<div style="flex: 3 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; color: #4A4D53">Examples from the speeches</p>
+<sc-for list="{{examples}}" as="e" hint-placeholder-count="3">
+<figure style="margin: 0; padding: 0 0 14px; border-bottom: 1px solid #E5E6E8; display: flex; flex-direction: column; gap: 6px">
+<blockquote lang="es" style="margin: 0; font-family: Piazzolla, Georgia, serif; font-size: 19px; line-height: 1.45">“{{e.t}}”</blockquote>
+<figcaption style="font-size: 14px; color: #4A4D53">{{e.who}}, {{e.c}}, {{e.y}} · <a href="Grid-Speech.dc.html">Read the speech</a></figcaption>
+</figure>
+</sc-for>
+</div>
+<aside style="flex: 2 1 360px; min-width: 0; align-self: flex-start; padding: 24px; border-radius: 12px; background: #121315; color: #F3F4F6; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; color: #A9AEB8">Download this search</p>
+<p style="margin: 0; font-family: Piazzolla, Georgia, serif; font-size: 24px; font-weight: 700; line-height: 1.2">All {{totalText}} mentions of “{{word}}”</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #D2D5DB">One row per mention, with the sentence, country, year, president and a link to the speech. CSV or Stata.</p>
+<a href="Site-Download.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 48px; border-radius: 8px; background: #FFFFFF; color: #121315; text-decoration: none; font-size: 16px; font-weight: 700">Download the mentions</a>
+<p style="margin: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px"><a href="Site-Download.dc.html" style="color: #F3F4F6">Chart data (CSV)</a><a href="Site-Download.dc.html" style="color: #F3F4F6">All 1,765 speeches (ZIP)</a></p>
+</aside>
+</section>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 26px 32px 48px; box-sizing: border-box">
+<p style="margin: 0; max-width: 860px; font-size: 13px; line-height: 1.6; color: #5D6066">Counts use the 1,642 speeches in Spanish and include plurals and old spellings such as ferro-carril. Brazil's speeches are in Portuguese and will have their own search. Rates are noisy in decades with few speeches.</p>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1960}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.data = {"decades":[1810,1820,1830,1840,1850,1860,1870,1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010,2020],"words":{"ferrocarril":{"total":6702,"ndocs":838,"rate":[0.0,0.0,0.0,0.19,2.43,4.12,9.79,10.54,8.17,8.82,8.74,6.45,5.0,2.84,3.01,1.58,0.45,0.56,0.47,0.27,0.27,0.38],"heat":{"arg":[null,null,null,null,1.4,6.19,11.24,12.97,9.87,7.61,5.97,8.02,7.22,4.74,1.62,1.71,0.0,0.56,0.52,0.88,1.22,0.26],"chl":[null,null,0.0,0.0,6.8,10.99,16.18,8.3,9.14,17.81,23.61,10.03,5.66,1.9,1.56,0.88,0.74,0.26,1.1,0.08,0.19,0.33],"col":[null,0.0,0.0,0.2,3.55,3.14,11.0,16.86,3.41,21.19,12.74,13.59,4.89,1.44,3.94,0.31,0.3,0.9,1.11,0.71,0.73,0.0],"cri":[null,0.0,0.0,0.0,1.17,3.42,15.25,5.36,9.85,9.41,6.85,5.66,12.97,3.85,3.16,0.65,1.2,0.93,0.23,0.3,0.39,0.0],"dom":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"ecu":[null,null,0.0,0.0,0.0,0.57,8.36,6.55,10.85,8.66,12.13,10.53,7.73,1.7,4.57,3.55,null,0.48,0.18,0.11,0.0,0.0],"mex":[null,null,null,null,null,2.81,12.18,14.73,11.8,9.15,7.19,5.44,2.41,5.8,5.96,3.78,0.7,0.78,0.48,0.27,0.17,0.33],"pry":[null,null,null,null,null,null,null,1.59,0.63,3.69,1.48,0.88,0.77,null,0.58,1.54,0.6,0.16,0.53,0.5,0.36,0.34],"per":[null,0.0,0.0,1.16,0.38,0.87,6.92,2.99,0.64,14.42,10.08,8.17,2.08,1.9,1.55,1.87,0.23,0.38,0.0,0.0,0.4,1.37],"ury":[null,null,0.0,0.0,0.0,1.07,3.94,1.89,4.89,6.21,5.71,0.57,0.64,2.15,1.96,0.33,0.18,0.86,0.33,0.0,0.51,0.68],"ven":[0.0,null,0.0,0.0,0.0,1.85,4.91,10.09,7.45,2.83,3.68,0.78,0.7,1.14,0.61,0.62,0.22,0.75,0.26,0.21,0.52,0.0]}},"guerra":{"total":8138,"ndocs":1227,"rate":[6.68,9.93,9.07,10.41,8.58,18.89,14.08,8.25,6.43,5.36,7.74,5.42,4.43,7.41,2.15,1.71,0.86,1.55,1.52,0.66,0.5,0.84],"heat":{"arg":[null,null,null,null,9.0,28.96,17.69,4.21,4.97,5.33,8.55,3.47,3.3,9.18,2.27,1.54,1.13,1.97,2.24,0.99,0.72,1.17],"chl":[null,null,13.7,5.98,5.7,21.99,7.24,16.26,7.35,2.74,5.78,3.94,3.65,5.6,0.89,0.46,1.21,1.57,0.5,0.95,0.38,1.31],"col":[null,11.03,8.5,8.71,8.94,13.55,22.74,11.67,9.87,10.6,6.57,3.86,5.81,12.51,3.16,2.62,0.75,1.79,10.61,0.56,7.65,2.27],"cri":[null,4.08,4.49,8.28,12.28,10.25,5.49,13.01,5.82,1.67,6.74,0.53,0.39,7.82,3.05,0.09,0.88,4.82,2.31,1.01,0.39,0.93],"dom":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,4.12,1.46,0.29,3.82,0.65,0.23,1.44],"ecu":[null,null,10.09,14.16,8.48,23.53,3.35,7.37,6.62,4.12,14.46,6.45,3.95,2.5,2.35,3.46,null,0.71,0.55,0.21,0.72,1.25],"mex":[null,null,null,null,null,30.88,10.53,5.67,3.56,4.86,8.12,3.75,3.75,9.92,1.88,1.12,0.9,1.09,1.65,0.07,0.09,0.21],"pry":[null,null,null,null,null,null,null,2.86,3.15,6.03,9.29,7.41,15.8,null,5.83,4.28,2.2,2.89,1.48,1.25,0.36,0.53],"per":[null,15.05,12.26,8.74,8.67,9.54,9.51,15.42,4.82,7.31,7.59,8.17,6.33,6.11,2.82,3.98,1.02,1.44,2.56,0.67,0.4,0.64],"ury":[null,null,8.05,28.49,9.37,11.21,9.0,8.2,4.32,5.34,4.92,10.74,2.99,8.0,0.89,0.17,0.36,0.0,0.2,0.0,0.08,0.1],"ven":[6.68,null,7.76,4.75,9.4,18.48,14.58,9.27,10.94,12.02,13.66,7.24,2.09,5.6,0.0,1.57,0.37,0.08,0.51,3.67,7.58,11.79]}},"deuda":{"total":9967,"ndocs":1288,"rate":[0.95,9.38,9.21,5.62,7.39,7.57,10.45,9.99,9.37,5.27,5.62,4.75,5.09,2.51,2.25,2.43,1.82,5.83,3.91,4.11,1.89,2.09],"heat":{"arg":[null,null,null,null,3.2,5.65,5.85,13.84,12.2,9.46,4.74,7.32,8.35,3.64,0.97,1.89,0.0,5.49,3.79,6.29,7.41,8.08],"chl":[null,null,8.22,4.48,5.33,1.72,3.41,5.88,5.02,2.74,3.81,3.26,4.47,1.4,1.06,2.49,2.7,2.27,1.76,2.44,2.11,4.57],"col":[null,11.03,13.52,8.9,11.52,15.37,12.67,7.0,9.87,2.35,4.64,2.77,1.85,1.94,2.89,0.46,0.3,0.0,1.55,5.22,2.0,3.64],"cri":[null,5.71,6.12,0.92,3.51,10.25,4.27,14.54,12.99,5.23,8.28,9.37,12.19,5.25,4.47,3.05,2.65,3.97,4.73,4.66,3.43,6.54],"dom":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,8.25,3.95,4.39,5.18,9.29,3.56,2.39],"ecu":[null,null,11.95,2.83,8.48,2.3,20.91,2.46,8.46,5.6,9.72,8.83,5.54,1.36,1.17,2.62,null,7.53,7.0,8.57,4.2,4.17],"mex":[null,null,null,null,null,5.61,3.29,6.87,6.07,0.4,2.16,5.98,4.5,2.18,2.75,2.12,1.13,7.0,5.43,3.08,1.88,1.75],"pry":[null,null,null,null,null,null,null,4.13,7.55,10.11,7.54,5.9,3.68,null,0.0,2.14,0.3,3.53,4.44,5.51,2.42,3.06],"per":[null,11.51,0.49,6.41,10.18,1.73,7.35,4.48,6.42,3.65,6.37,1.3,3.22,2.48,2.37,1.8,3.05,6.92,5.93,4.32,0.93,1.73],"ury":[null,null,8.29,1.46,8.98,11.75,23.07,15.77,13.91,5.04,5.49,0.95,2.56,5.54,6.94,2.41,0.99,5.17,1.84,11.28,0.51,1.06],"ven":[0.95,null,9.83,7.46,3.98,4.62,17.12,16.19,10.11,9.42,7.36,5.94,3.95,0.41,0.61,3.13,3.68,9.22,5.61,4.5,1.93,0.95]}},"petróleo":{"total":5069,"ndocs":633,"rate":[0.0,0.0,0.0,0.0,0.0,0.0,0.1,0.08,0.05,0.28,0.84,1.81,1.79,2.23,2.33,3.18,2.97,4.81,1.55,3.15,1.7,1.29],"heat":{"arg":[null,null,null,null,0.0,0.0,0.3,0.0,0.0,0.28,1.72,1.66,1.22,1.35,2.84,4.97,0.0,0.42,0.69,0.22,2.02,1.04],"chl":[null,null,0.0,0.0,0.0,0.0,0.0,0.17,0.0,0.0,0.25,0.43,1.15,1.9,2.9,1.46,0.93,1.22,0.28,1.97,0.45,0.24],"col":[null,0.0,0.0,0.0,0.0,0.0,0.19,0.0,0.18,0.0,0.45,3.36,1.95,3.3,2.1,0.0,1.65,0.9,0.44,2.4,0.55,3.23],"cri":[null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.11,0.53,0.26,0.0,0.76,0.37,2.97,4.9,0.58,1.62,0.16,0.23],"dom":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1.03,2.5,3.81,1.36,5.42,1.29,1.53],"ecu":[null,null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.17,1.26,0.11,0.94,1.21,null,8.56,5.82,5.5,5.76,3.34],"mex":[null,null,null,null,null,0.0,0.0,0.0,0.0,0.96,2.8,3.81,3.95,3.92,3.57,4.19,4.42,7.35,2.41,2.62,1.88,1.57],"pry":[null,null,null,null,null,null,null,0.0,0.0,0.0,0.0,0.0,0.0,null,0.58,0.34,0.6,1.28,0.63,0.88,0.45,0.34],"per":[null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.32,1.09,1.68,2.33,1.97,2.35,2.78,1.18,2.71,4.11,0.13,2.16,0.13,1.09],"ury":[null,null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.13,0.43,0.62,0.18,0.25,0.94,4.31,0.65,2.26,0.24,0.18],"ven":[0.0,null,0.0,0.0,0.0,0.0,0.0,0.35,0.09,0.0,0.26,1.55,3.48,3.32,4.25,12.62,10.66,5.9,4.59,8.25,6.09,2.85]}},"democracia":{"total":5718,"ndocs":891,"rate":[4.77,0.0,0.38,0.19,0.45,0.25,0.17,0.24,0.34,0.2,0.38,0.8,1.06,2.26,2.74,2.41,3.08,8.52,6.89,3.31,1.16,1.96],"heat":{"arg":[null,null,null,null,0.4,0.73,0.15,0.35,0.16,0.21,0.62,1.02,0.83,1.55,2.52,3.77,4.51,22.11,12.94,3.75,2.38,5.6],"chl":[null,null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.05,0.11,7.2,3.4,1.79,6.52,6.97,8.15,7.89,6.45,8.65],"col":[null,0.0,0.0,0.2,0.86,0.0,0.0,0.0,0.54,0.0,0.34,0.17,3.04,5.66,2.63,2.32,4.21,11.19,11.05,3.25,8.2,3.09],"cri":[null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.63,1.21,1.24,1.3,0.93,4.14,5.46,5.22,12.93,5.65,3.34,4.68,7.48],"dom":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,6.18,1.87,3.95,6.0,1.94,1.14,3.06],"ecu":[null,null,2.12,0.0,0.68,0.0,0.0,0.0,0.18,0.63,0.32,0.34,1.34,3.07,4.05,3.83,null,7.93,2.91,4.97,8.04,5.84],"mex":[null,null,null,null,null,0.0,0.0,0.0,0.0,0.0,0.06,0.09,0.28,1.89,1.53,1.58,2.78,4.57,9.42,2.08,0.44,0.96],"pry":[null,null,null,null,null,null,null,0.64,4.41,0.78,0.4,2.55,1.38,null,14.59,5.48,4.6,13.49,12.27,8.27,1.34,2.14],"per":[null,0.0,0.0,0.58,0.0,0.43,0.43,0.5,0.64,0.1,0.46,0.21,0.52,0.7,1.14,1.31,6.44,7.91,3.78,7.56,3.99,3.74],"ury":[null,null,0.0,0.0,0.0,0.0,0.56,0.63,0.0,0.04,0.19,1.4,2.99,5.54,1.96,1.25,0.13,10.34,1.43,2.9,0.76,0.97],"ven":[4.77,null,0.0,0.68,1.08,0.46,0.34,0.47,0.64,0.24,1.05,0.78,1.63,3.53,2.43,1.19,4.19,5.81,13.26,4.54,4.07,6.41]}},"pobreza":{"total":4153,"ndocs":552,"rate":[0.0,0.28,0.19,0.13,0.13,0.13,0.1,0.04,0.08,0.07,0.11,0.09,0.11,0.2,0.32,0.29,0.57,0.84,3.96,4.56,2.51,2.11],"heat":{"arg":[null,null,null,null,0.0,0.18,0.3,0.18,0.0,0.0,0.06,0.0,0.09,0.05,0.16,0.51,0.0,0.56,3.62,5.18,4.32,6.52],"chl":[null,null,0.46,0.37,0.0,0.0,0.0,0.0,0.0,0.14,0.0,0.06,0.04,0.2,0.0,0.03,1.77,3.31,6.88,3.63,6.19,1.79],"col":[null,0.79,0.0,0.2,0.25,0.17,0.0,0.0,0.36,0.0,0.28,0.08,0.11,0.51,0.53,0.15,1.05,0.45,5.53,4.09,11.3,8.17],"cri":[null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.63,0.44,0.18,0.39,0.12,0.76,0.28,1.36,1.27,7.96,10.53,7.64,3.74],"dom":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.52,0.52,0.59,1.64,6.2,6.96,5.55],"ecu":[null,null,0.53,0.0,0.0,0.0,0.84,0.0,0.0,0.11,0.4,0.34,0.17,0.68,0.94,1.03,null,0.63,2.82,3.6,13.56,2.92],"mex":[null,null,null,null,null,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.0,0.3,0.36,0.66,0.47,0.26,4.82,3.2,1.68,1.41],"pry":[null,null,null,null,null,null,null,0.0,0.0,0.39,0.0,0.4,0.31,null,0.0,0.0,0.1,0.0,2.11,10.03,15.03,3.5],"per":[null,0.0,0.0,0.0,0.0,0.43,0.0,0.0,0.0,0.0,0.06,0.07,0.1,0.09,0.05,0.19,0.79,0.46,4.72,11.07,7.71,6.65],"ury":[null,null,0.24,0.0,0.39,0.0,0.0,0.0,0.38,0.0,0.0,0.0,0.43,0.0,0.0,0.08,0.08,0.0,1.68,4.51,0.4,0.42],"ven":[0.0,null,0.0,0.0,0.36,0.0,0.0,0.0,0.09,0.0,0.0,0.0,0.0,0.21,0.0,0.19,0.51,0.66,1.79,6.13,3.06,1.82]}},"mujeres":{"total":12129,"ndocs":843,"rate":[0.0,0.0,0.09,0.06,0.38,0.17,0.43,1.38,0.73,1.09,1.01,1.19,1.0,1.2,1.44,0.88,1.73,1.69,3.31,5.52,7.94,11.41],"heat":{"arg":[null,null,null,null,0.2,0.0,0.6,2.1,0.7,0.92,1.11,0.96,0.7,1.45,2.35,1.2,5.64,1.69,3.62,1.65,3.74,5.21],"chl":[null,null,0.0,0.37,1.65,1.03,1.7,0.86,0.72,1.1,2.34,2.65,1.49,0.6,0.22,0.79,3.07,3.84,5.5,11.12,12.38,9.54],"col":[null,0.0,0.0,0.0,0.0,0.0,0.56,6.75,0.18,0.0,1.42,0.17,0.33,0.17,0.79,0.62,0.3,0.0,2.87,0.85,2.37,7.83],"cri":[null,0.0,0.41,0.0,0.0,0.0,0.0,1.53,0.0,1.25,0.66,0.18,0.52,0.82,1.2,0.83,0.8,3.04,6.12,7.09,6.94,7.48],"dom":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.0,1.04,2.34,3.55,3.1,6.13,8.23],"ecu":[null,null,0.27,0.0,0.0,0.0,0.0,0.82,0.55,1.16,0.08,0.68,1.68,0.45,0.53,0.19,null,0.79,2.54,2.01,3.72,5.84],"mex":[null,null,null,null,null,0.0,0.0,0.33,1.21,1.19,0.53,1.12,1.11,0.84,2.8,1.78,2.47,1.04,2.68,6.12,9.26,15.37],"pry":[null,null,null,null,null,null,null,0.0,0.0,0.39,2.16,0.56,0.61,null,0.0,1.28,1.4,0.96,2.96,4.51,12.71,9.32],"per":[null,0.0,0.0,0.0,0.0,0.43,0.86,0.0,0.32,1.38,0.93,1.85,1.45,1.81,2.23,0.93,3.16,0.76,2.56,5.4,6.12,6.74],"ury":[null,null,0.0,0.0,0.78,0.0,0.0,0.63,0.75,1.24,0.89,1.53,0.85,0.92,0.0,0.42,1.48,0.0,2.54,0.97,3.47,5.3],"ven":[0.0,null,0.0,0.0,0.0,0.0,0.0,0.59,1.01,0.47,1.05,0.26,0.7,0.93,0.0,0.43,1.1,1.99,0.77,4.54,5.84,4.19]}},"internet":{"total":1739,"ndocs":195,"rate":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.29,1.62,1.54,1.07],"heat":{"arg":[null,null,null,null,0.0,0.0,0.0,0.09,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.17,1.32,1.08,0.26],"chl":[null,null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.22,3.63,1.21,0.73],"col":[null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.22,1.83,1.82,0.62],"cri":[null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.69,4.56,1.48,1.87],"dom":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.0,0.0,0.0,0.0,0.26,0.83,0.67],"ecu":[null,null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,null,0.0,0.0,0.53,0.0,0.83],"mex":[null,null,null,null,null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.68,1.75,1.25],"pry":[null,null,null,null,null,null,null,0.0,0.0,0.0,0.0,0.0,0.0,null,0.0,0.0,0.0,0.0,0.0,1.13,2.33,0.53],"per":[null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.94,1.73,2.64],"ury":[null,null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.9,0.97,1.17,0.87],"ven":[0.0,null,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.46,0.4,0.4]}}}};
+    this.state = { word: 'ferrocarril', query: 'ferrocarril' };
+  }
+  renderVals() {
+    const ex = {
+      'ferrocarril': [
+        { y: 1863, who: 'José Joaquín Pérez', c: 'Chile', t: 'Juzgo también conveniente la adquisición por el Estado de las acciones de particulares en el ferrocarril de Santiago a San Fernando.' },
+        { y: 1927, who: 'Augusto B. Leguía', c: 'Peru', t: 'Con especial interés se activan los estudios para construir el ferrocarril que deberá unir las líneas peruanas y bolivianas al norte del lago Titicaca.' },
+        { y: 2007, who: 'Néstor Kirchner', c: 'Argentina', t: 'Nuestra política de recuperación del ferrocarril como elemento de articulación territorial ha tenido como bases la reorganización, la recuperación y la modernización del sistema ferroviario.' }
+      ],
+      'guerra': [
+        { y: 1876, who: 'Manuel Pardo', c: 'Peru', t: 'La última guerra civil ha puesto en evidencia la fuerza de nuestra organización militar.' },
+        { y: 1950, who: 'Juan Domingo Perón', c: 'Argentina', t: 'El país ha tenido sólo dos oportunidades para industrializarse, y ellas han sido determinadas por las dos guerras mundiales que nuestra generación ha debido soportar.' },
+        { y: 2000, who: 'Fernando de la Rúa', c: 'Argentina', t: 'Yo les declaro la guerra a los narcotraficantes y les tiendo mi mano a los adictos.' }
+      ],
+      'deuda': [
+        { y: 1834, who: 'José Joaquín Prieto', c: 'Chile', t: 'No dudo que también os ocupareis en el reconocimiento solemne de la deuda interior.' },
+        { y: 1986, who: 'Alan García', c: 'Peru', t: 'No se puede pedir créditos nuevos para pagar deuda anterior.' },
+        { y: 2002, who: 'Eduardo Duhalde', c: 'Argentina', t: 'Y Argentina se vio obligada a declarar la imposibilidad de pago de la deuda pública en los términos en que estaba programada.' }
+      ],
+      'petróleo': [
+        { y: 1891, who: 'Remigio Morales Bermúdez', c: 'Peru', t: 'Las minas o vertientes de petróleo del departamento de Piura figuran en este incremento en primera línea.' },
+        { y: 1947, who: 'Miguel Alemán Valdés', c: 'Mexico', t: 'La venta de petróleo y sus derivados en los mercados mundiales nos dará oportunidad de lograr divisas esenciales para nuestro fortalecimiento económico.' },
+        { y: 1989, who: 'Jaime Lusinchi', c: 'Venezuela', t: 'Sin embargo, hay que destacar una vez más las grandes dificultades a que se ha visto sometido el petróleo en el Mercado Internacional.' }
+      ],
+      'democracia': [
+        { y: 1858, who: 'Mariano Ospina Rodríguez', c: 'Colombia', t: 'Adoptada la democracia representativa como base de cualquiera Constitucion, las elecciones son parte esencial de ella; i el sistema que para estas se adopte dependerá de la forma federativa que se prefiera.' },
+        { y: 1980, who: 'Jaime Roldós Aguilera', c: 'Ecuador', t: 'No obstante, el Gobierno afrontó la situación, para precautelar la democracia sin desmedro de la autoridad.' },
+        { y: 1994, who: 'Carlos Salinas de Gortari', c: 'Mexico', t: 'Probó también que fortalecer la democracia no significa poner en riesgo la gobernabilidad.' }
+      ],
+      'pobreza': [
+        { y: 1961, who: 'Arturo Frondizi', c: 'Argentina', t: 'Pronto serán leyendas la desolación de la Patagonia y la pobreza crónica del Norte.' },
+        { y: 2002, who: 'Eduardo Duhalde', c: 'Argentina', t: 'La respuesta más urgente y necesaria frente a esta situación es la lucha contra la pobreza que está destruyendo a millones de hogares.' },
+        { y: 2024, who: 'Gustavo Petro', c: 'Colombia', t: 'Ahí hay un motor de la disminución de la pobreza en Colombia y, por tanto, una de sus causas -no la única- se llama agricultura.' }
+      ],
+      'mujeres': [
+        { y: 1909, who: 'José Figueroa Alcorta', c: 'Argentina', t: 'Se han abierto, asimismo, dos nuevas Escuelas Profesionales de Mujeres en la Capital y en Tucumán, con halagüeñas perspectivas.' },
+        { y: 1952, who: 'Juan Domingo Perón', c: 'Argentina', t: 'Yo saludo, en la nueva representación femenina, a la mujer de nuestro pueblo.' },
+        { y: 2018, who: 'Danilo Medina', c: 'Dominican Republic', t: 'Y, por supuesto, trabajamos también para fomentar la independencia económica de las mujeres y su inserción con equidad en el mercado laboral.' }
+      ],
+      'internet': [
+        { y: 1997, who: 'Eduardo Frei Ruiz-Tagle', c: 'Chile', t: 'Entre ellos destaco la Escuela Villa Estrellas de la Antartica Chilena, que desde este mes está conectada a Chile y al mundo a través de Internet.' },
+        { y: 2000, who: 'Fernando de la Rúa', c: 'Argentina', t: 'Me ha tocado ser el presidente de Internet y las nuevas tecnologías.' },
+        { y: 2020, who: 'Danilo Medina', c: 'Dominican Republic', t: 'Pero si hablamos de cerrar brechas, debíamos poner el foco también en lo más esencial: el acceso a internet, que hoy ya no es un lujo, sino un derecho.' }
+      ]
+    };
+    const order = ['ferrocarril', 'guerra', 'deuda', 'petróleo', 'democracia', 'pobreza', 'mujeres', 'internet'];
+    const st = this.state;
+    const norm = (s) => String(s || '').trim().toLowerCase().replace('petroleo', 'petróleo');
+    const q = norm(st.query);
+    const word = this.data.words[q] ? q : st.word;
+    const notFound = q.length > 0 && !this.data.words[q];
+    const d = this.data.words[word];
+    const decs = this.data.decades.slice(1);
+    const rate = d.rate.slice(1);
+    let peak = 0;
+    rate.forEach((v, i) => { if ((v || 0) > (rate[peak] || 0)) peak = i; });
+    const max = Math.max(...rate.map((v) => v || 0)) || 1;
+    const bars = decs.map((dec, i) => {
+      const v = rate[i] || 0;
+      return {
+        title: dec + 's: ' + v.toFixed(2) + ' per 10,000 words',
+        style: 'height: ' + Math.max(v > 0 ? 2 : 0, v / max * 100).toFixed(2) + '%; background: ' + (i === peak ? '#104281' : '#2a78d6'),
+        isPeak: i === peak,
+        value: v.toFixed(1),
+        tick: (dec % 40 === 20) ? dec + 's' : ''
+      };
+    });
+    const ramp = ['#b7d3f6', '#6da7ec', '#2a78d6', '#1c5cab', '#0d366b'];
+    const names = { arg: 'Argentina', chl: 'Chile', col: 'Colombia', cri: 'Costa Rica', dom: 'Dominican Rep.', ecu: 'Ecuador', mex: 'Mexico', pry: 'Paraguay', per: 'Peru', ury: 'Uruguay', ven: 'Venezuela' };
+    let hmax = 0;
+    Object.keys(d.heat).forEach((c) => d.heat[c].slice(1).forEach((v) => { if (v && v > hmax) hmax = v; }));
+    const heat = Object.keys(names).map((c) => ({
+      name: names[c],
+      cells: d.heat[c].slice(1).map((v, i) => {
+        let bg = '#F6F6F7; box-shadow: inset 0 0 0 1px #E1E2E5';
+        if (v === 0) bg = '#EEF0F3';
+        if (v > 0) bg = ramp[Math.min(4, Math.floor(v / hmax * 5))];
+        return { style: 'background: ' + bg, title: names[c] + ', ' + decs[i] + 's: ' + (v === null ? 'no speeches' : v.toFixed(2) + ' per 10,000 words') };
+      })
+    }));
+    const chips = order.map((w) => ({
+      word: w, pressed: w === word ? 'true' : 'false',
+      style: w === word ? 'background: #121315; color: #FFFFFF; border: 1px solid #121315' : 'background: #FFFFFF; color: #121315; border: 1px solid #C5C8CD',
+      pick: () => this.setState({ word: w, query: w })
+    }));
+    return {
+      word: word, query: st.query, notFound: notFound, chips: chips, bars: bars, heat: heat, examples: ex[word],
+      totalText: d.total.toLocaleString('en-US'), docsText: d.ndocs.toLocaleString('en-US'), peakText: decs[peak] + 's',
+      axisMax: max.toFixed(1),
+      chartLabel: 'Bar chart: mentions of ' + word + ' per 10,000 words by decade, 1820s to 2020s. Highest in the ' + decs[peak] + 's.',
+      onQuery: (e) => this.setState({ query: e.target.value }),
+      noSubmit: (e) => { e.preventDefault(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

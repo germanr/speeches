@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idea: atlas of attention</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<a id="sketch-back" href="../sketches.html" style="position:fixed;right:16px;bottom:16px;z-index:2147483647;padding:8px 14px;border-radius:999px;background:#17171A;color:#FFFFFF;font:600 13px/1.2 Archivo,'Helvetica Neue',Arial,sans-serif;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.2)">&larr; All sketches</a>
+<script>if(location.hash==="#thumb")document.getElementById("sketch-back").hidden=true</script>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0;background:#F6F5F1}
+a{color:#17181B;text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:#000000;text-decoration-thickness:2px}
+</style>
+</helmet>
+<div style="background: #F6F5F1; color: #17181B; font-family: 'Encode Sans', 'Helvetica Neue', Arial, sans-serif">
+
+<header style="border-bottom: 1px solid #E1DFD8">
+<div style="max-width: 1280px; margin: 0 auto; padding: 16px 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px">
+<a href="Idea-Weave.dc.html" style="display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; text-decoration: none">
+<span style="font-size: 20px; font-weight: 800">Mensajes</span>
+<span style="font-size: 14px; color: #5A5D63">Latin American presidential speeches, 1819–2026</span>
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; font-size: 15px">
+<a href="Grid-Home.dc.html" style="text-decoration: none">Browse</a>
+<a href="Idea-Words.dc.html" style="text-decoration: none">Words</a>
+<a href="Main.dc.html" style="text-decoration: none">The paper</a>
+<a href="Release.dc.html" style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 6px; background: #17181B; color: #FFFFFF; text-decoration: none; font-weight: 600">Download the data</a>
+</nav>
+</div>
+</header>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 36px 32px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+<h1 style="margin: 0; font-size: clamp(32px, 3.8vw, 46px); font-weight: 800; line-height: 1.06; letter-spacing: -0.02em">The leading topic in each country, decade by decade</h1>
+<p style="margin: 0; max-width: 760px; font-size: 18px; line-height: 1.55; color: #3F4247">Each tile shows the policy domain with the largest share of a country's annual messages in the chosen decade. Press play to move through two centuries.</p>
+</section>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 26px 32px 0; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+<div style="flex: 0 1 650px; min-width: 0; overflow-x: auto">
+<div style="position: relative; width: 630px; height: 600px">
+<sc-for list="{{tiles}}" as="t" hint-placeholder-count="12">
+<div style="position: absolute; width: 150px; height: 112px; box-sizing: border-box; border-radius: 10px; padding: 12px 12px 10px; display: flex; flex-direction: column; justify-content: space-between; transition: background-color 400ms ease; {{t.style}}">
+<div>
+<p style="margin: 0; font-size: 15px; font-weight: 700; line-height: 1.2">{{t.name}}</p>
+<p style="margin: 3px 0 0; font-size: 12px; line-height: 1.3; opacity: 0.92">{{t.lead}}</p>
+</div>
+<sc-if value="{{t.hasBar}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: rgba(255,255,255,0.35)">
+<sc-for list="{{t.segs}}" as="s" hint-placeholder-count="7">
+<span title="{{s.title}}" style="height: 100%; flex: none; box-shadow: inset -1px 0 0 rgba(255,255,255,0.8); {{s.style}}"></span>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+
+<aside style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<div style="padding: 22px 24px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E1DFD8; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px">
+<p style="margin: 0; font-size: 64px; font-weight: 800; line-height: 0.9; letter-spacing: -0.03em">{{label}}</p>
+<div style="display: flex; gap: 8px">
+<button type="button" onClick="{{prev}}" aria-label="Previous decade" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #C9C6BD; border-radius: 8px; background: #FFFFFF; color: #17181B; cursor: pointer">
+<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="11,3.5 5.5,9 11,14.5"></polyline></svg>
+</button>
+<button type="button" onClick="{{togglePlay}}" aria-label="{{playLabel}}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; border-radius: 8px; background: #17181B; color: #FFFFFF; cursor: pointer">
+<sc-if value="{{notPlaying}}" hint-placeholder-val="{{true}}">
+<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" fill="currentColor"><polygon points="5,3 15,9 5,15"></polygon></svg>
+</sc-if>
+<sc-if value="{{playing}}" hint-placeholder-val="{{false}}">
+<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" fill="currentColor"><rect x="4" y="3" width="3.5" height="12" rx="1"></rect><rect x="10.5" y="3" width="3.5" height="12" rx="1"></rect></svg>
+</sc-if>
+</button>
+<button type="button" onClick="{{next}}" aria-label="Next decade" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #C9C6BD; border-radius: 8px; background: #FFFFFF; color: #17181B; cursor: pointer">
+<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,3.5 12.5,9 7,14.5"></polyline></svg>
+</button>
+</div>
+</div>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #3F4247">Decade
+<input type="range" min="1820" max="2020" step="10" value="{{decade}}" onChange="{{setDecade}}" style="width: 100%; accent-color: #17181B">
+</label>
+<div style="display: flex; gap: 3px">
+<sc-for list="{{strip}}" as="k" hint-placeholder-count="21">
+<button type="button" onClick="{{k.pick}}" title="{{k.title}}" aria-label="{{k.title}}" style="flex: 1; min-width: 0; height: 22px; padding: 0; border: 0; border-radius: 3px; cursor: pointer; {{k.style}}"></button>
+</sc-for>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 11px; color: #5A5D63"><span>1820s</span><span>1920s</span><span>2020s</span></div>
+<p style="margin: 0; font-size: 17px; line-height: 1.5">{{summary}}</p>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: #3F4247">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #b9472f"></span>War and Peace</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #d99a2b"></span>Public Administration</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #7b62c4"></span>Infrastructure</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #3a9a62"></span>National Identity</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #2d6fbf"></span>Economic Development</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 3px; background: #e07fa0"></span>Social Welfare</span>
+</div>
+
+<div style="padding: 22px 24px; border-radius: 12px; background: #17181B; color: #F4F4F2; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; color: #AEB1B7">Download this decade</p>
+<p style="margin: 0; font-size: 22px; font-weight: 700; line-height: 1.25">{{downloadTitle}}</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #D3D5D9">Texts, catalogue rows and topic shares for every message in the collection from this decade, all 12 countries.</p>
+<a href="Release.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 46px; border-radius: 8px; background: #F4F4F2; color: #17181B; text-decoration: none; font-size: 15px; font-weight: 700">{{downloadButton}}</a>
+<a href="Release.dc.html" style="font-size: 14px; color: #F4F4F2">Or download all 1,765 messages</a>
+</div>
+</aside>
+</section>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 22px 32px 48px; box-sizing: border-box">
+<p style="margin: 0; max-width: 900px; font-size: 13px; line-height: 1.6; color: #5A5D63">Each country's shares average its messages in the decade. Brazil's messages are in Portuguese and outside the topic model. Shares are current estimates from the paper's topic model. Tiles follow the rough position of each country.</p>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.data = {"arg":{"1850":[52.0,22.6,0.2,10.3,0.5,0.4,14.1,6],"1860":[48.4,29.5,0.5,8.0,0.3,0.4,12.8,10],"1870":[28.4,41.6,0.8,10.6,0.4,0.6,17.6,10],"1880":[12.8,56.8,1.2,5.2,0.3,0.5,23.2,10],"1890":[8.9,65.0,2.3,6.3,0.4,0.2,17.0,10],"1900":[4.6,62.0,10.1,6.9,0.3,0.3,15.8,10],"1910":[1.9,52.8,19.0,9.0,0.3,0.1,17.0,8],"1920":[1.6,43.0,27.3,7.1,0.7,0.4,19.9,10],"1930":[0.3,36.6,36.4,7.2,0.6,0.1,18.9,7],"1940":[1.6,20.1,40.0,20.0,3.6,0.2,14.5,7],"1950":[0.8,2.2,22.2,47.5,14.7,0.5,12.0,7],"1960":[0.8,4.3,34.0,20.2,32.8,0.2,7.7,5],"1970":[2.7,0.7,3.7,51.4,26.1,3.6,11.9,2],"1980":[0.6,2.3,9.2,27.9,46.2,6.3,7.5,6],"1990":[0.5,1.0,3.5,19.9,41.2,22.4,11.5,10],"2000":[0.4,1.9,5.1,9.9,37.8,27.5,17.4,10],"2010":[0.3,2.1,3.9,4.2,15.5,36.8,37.1,10],"2020":[0.7,0.8,2.1,12.4,26.2,36.7,20.9,7]},"chl":{"1830":[48.8,23.5,0.9,2.0,0.8,0.5,23.6,7],"1840":[42.6,30.3,1.1,1.2,0.6,0.4,23.8,10],"1850":[27.8,46.4,0.4,0.5,0.3,0.4,24.3,10],"1860":[35.4,39.0,0.8,1.8,0.5,0.4,22.3,10],"1870":[20.5,42.4,0.7,1.5,0.9,0.6,33.5,10],"1880":[16.0,51.5,1.2,3.9,0.6,0.5,26.4,10],"1890":[8.7,59.5,1.8,7.8,0.6,0.3,21.3,10],"1900":[1.8,63.1,2.5,0.8,0.3,0.3,31.2,10],"1910":[1.7,63.4,8.3,1.5,0.4,0.2,24.5,10],"1920":[1.9,49.8,21.5,9.2,0.5,0.3,16.9,9],"1930":[2.6,30.2,34.0,13.4,0.6,0.7,18.6,8],"1940":[2.7,15.1,40.0,26.0,4.6,0.4,11.2,10],"1950":[2.7,9.9,34.1,30.2,10.0,0.2,12.9,10],"1960":[1.7,7.8,35.1,20.6,20.3,0.5,13.9,10],"1970":[0.7,1.4,17.3,30.7,38.2,2.6,9.1,10],"1980":[0.6,2.0,24.7,14.8,46.6,5.3,6.1,10],"1990":[0.4,3.4,13.8,7.3,42.4,27.0,5.7,10],"2000":[0.5,1.8,4.4,6.3,21.8,58.5,6.8,10],"2010":[0.2,1.3,4.2,3.4,15.5,69.2,6.2,10],"2020":[0.4,1.1,1.3,8.0,12.2,68.4,8.7,7]},"col":{"1820":[56.7,7.8,0.4,10.5,1.0,1.1,22.5,3],"1830":[44.0,13.2,0.5,3.9,0.4,0.3,37.7,9],"1840":[38.7,23.2,0.6,1.6,0.4,0.5,35.1,8],"1850":[41.2,18.2,0.2,7.3,0.4,0.3,32.5,10],"1860":[36.6,19.4,0.1,8.5,0.0,0.0,35.3,2],"1870":[28.3,30.0,1.0,2.8,0.6,0.3,36.9,2],"1880":[21.0,41.2,0.7,9.0,0.8,0.2,27.1,3],"1890":[27.6,26.5,0.2,35.4,0.5,0.1,9.7,3],"1900":[25.0,48.7,1.0,7.8,0.7,1.2,15.7,1],"1910":[9.7,56.4,1.9,11.5,0.2,0.2,20.0,8],"1920":[3.6,57.6,10.9,6.7,0.3,0.1,21.0,3],"1930":[4.7,42.7,17.1,18.0,0.8,0.3,16.4,3],"1940":[8.6,15.3,16.5,47.9,2.9,0.6,8.3,5],"1950":[5.6,13.0,22.3,40.9,8.2,0.6,9.4,3],"1960":[7.9,2.5,13.8,53.8,11.2,2.3,8.4,3],"1970":[3.5,6.4,17.0,26.6,35.2,1.1,10.3,5],"1980":[5.6,3.9,9.8,32.0,27.2,4.1,17.3,4],"1990":[2.4,3.1,2.5,19.2,37.2,24.1,11.5,7],"2000":[0.7,4.8,3.3,8.7,34.6,35.9,12.0,10],"2010":[2.0,1.6,1.7,11.7,16.0,54.0,13.1,10],"2020":[0.9,1.0,0.9,9.3,13.4,41.4,33.1,7]},"cri":{"1820":[55.0,23.0,0.5,4.6,1.0,0.7,15.2,4],"1830":[54.8,22.0,1.4,6.1,0.9,1.0,13.9,9],"1840":[53.6,10.7,2.1,9.5,1.9,1.2,21.0,4],"1850":[57.8,11.6,1.3,10.2,1.0,1.5,16.6,10],"1860":[46.6,19.7,2.2,8.0,1.0,1.3,21.2,10],"1870":[49.4,20.4,0.8,18.3,0.4,0.7,10.0,5],"1880":[37.9,27.7,2.2,13.3,1.4,1.1,16.4,8],"1890":[23.4,41.5,3.1,13.1,1.1,1.1,16.6,9],"1900":[18.5,48.1,4.1,14.4,0.8,0.6,13.4,10],"1910":[12.1,43.0,6.3,18.7,1.3,1.1,17.4,9],"1920":[12.8,35.8,6.1,21.3,0.8,1.7,21.4,10],"1930":[3.3,42.2,12.7,9.3,1.1,1.0,30.4,10],"1940":[2.1,31.3,37.1,5.5,0.5,0.6,22.9,8],"1950":[2.7,16.4,31.4,24.1,7.5,2.4,15.4,10],"1960":[2.3,12.1,36.4,12.1,19.7,2.3,15.0,10],"1970":[2.9,5.7,24.5,16.2,26.7,7.1,16.9,10],"1980":[1.0,1.5,15.2,20.9,42.8,9.1,9.5,10],"1990":[0.6,1.5,10.7,6.0,44.0,28.7,8.5,10],"2000":[0.5,1.5,8.0,6.6,32.3,41.0,10.1,10],"2010":[0.4,1.3,5.2,5.6,32.1,40.9,14.6,10],"2020":[1.1,0.9,2.5,11.6,12.6,45.6,25.8,7]},"dom":{"1960":[3.0,5.6,15.9,28.6,20.9,0.7,25.4,1],"1970":[2.0,13.1,30.1,16.7,15.1,2.5,20.4,3],"1980":[0.4,3.5,31.9,7.8,36.2,4.0,16.0,5],"1990":[4.5,5.7,18.5,13.0,21.9,7.1,29.3,4],"2000":[0.6,2.2,12.7,6.7,36.7,19.6,21.4,9],"2010":[0.3,2.1,11.2,1.8,23.9,41.2,19.4,10],"2020":[0.2,1.3,10.2,0.6,19.3,45.8,22.7,7]},"ecu":{"1830":[51.2,8.4,0.8,11.6,0.4,0.6,27.2,5],"1840":[62.2,12.5,0.9,10.9,0.4,0.7,12.4,6],"1850":[60.1,15.2,0.9,10.0,0.5,0.5,12.9,6],"1860":[58.6,18.5,0.4,7.4,0.5,0.7,13.9,3],"1870":[35.1,35.1,0.8,6.0,0.5,2.2,20.3,3],"1880":[36.7,33.8,0.7,10.2,0.5,0.6,17.5,5],"1890":[30.5,42.5,0.4,8.2,0.1,0.5,17.8,4],"1900":[25.1,37.3,0.5,18.1,0.2,0.4,18.4,9],"1910":[15.2,44.8,2.8,19.0,0.3,0.4,17.5,9],"1920":[8.8,55.5,5.6,11.5,0.1,0.4,18.0,5],"1930":[8.3,32.3,17.7,25.9,0.7,0.7,14.3,6],"1940":[7.3,21.6,23.0,34.2,2.0,0.4,11.4,6],"1950":[4.1,13.9,30.0,29.8,5.5,0.9,15.8,6],"1960":[3.9,11.0,28.4,32.9,8.1,0.6,15.1,4],"1980":[0.9,2.3,23.0,16.5,43.2,2.2,12.0,10],"1990":[0.2,3.7,18.6,4.8,42.1,10.3,20.4,8],"2000":[0.5,1.8,7.6,13.2,32.6,21.2,23.1,8],"2010":[1.3,1.4,1.1,19.6,13.6,32.0,31.0,8],"2020":[0.4,1.0,2.2,12.3,11.5,49.4,23.2,4]},"mex":{"1860":[47.5,25.0,0.7,6.8,1.1,0.4,18.5,3],"1870":[30.4,37.4,0.8,4.9,0.6,0.4,25.5,10],"1880":[11.7,53.0,0.3,0.5,0.3,0.2,34.0,10],"1890":[3.7,51.0,1.1,0.5,0.3,0.2,43.3,10],"1900":[1.0,43.0,2.3,0.3,0.2,0.2,53.1,10],"1910":[2.3,43.7,6.6,3.3,0.2,0.2,43.7,8],"1920":[0.8,32.8,20.3,4.2,0.2,0.1,41.7,10],"1930":[0.7,21.8,34.4,9.6,1.9,0.1,31.4,10],"1940":[0.5,16.7,35.4,6.1,2.1,0.2,38.9,10],"1950":[0.2,9.7,32.6,5.4,6.7,0.3,45.3,10],"1960":[0.7,6.9,31.1,8.7,18.2,0.8,33.7,10],"1970":[0.3,3.0,20.6,13.3,40.4,2.8,19.6,10],"1980":[0.3,1.5,11.5,7.1,62.2,4.3,13.1,10],"1990":[0.4,2.2,5.1,8.0,57.9,17.3,9.1,10],"2000":[0.4,0.8,0.8,12.6,41.6,35.4,8.5,10],"2010":[0.4,1.5,1.5,3.7,33.4,47.0,12.5,10],"2020":[0.5,2.8,2.2,3.5,14.6,39.8,36.7,7]},"per":{"1820":[54.3,10.4,0.8,17.3,0.8,0.9,15.5,3],"1830":[59.9,9.4,0.6,17.6,0.5,0.5,11.5,2],"1840":[55.6,21.5,0.4,13.2,0.4,0.5,8.4,4],"1850":[50.0,38.7,0.3,4.2,0.3,0.9,5.6,2],"1860":[48.1,28.5,0.8,12.1,0.4,0.8,9.3,4],"1870":[36.8,34.3,0.8,15.8,0.7,0.4,11.2,6],"1880":[33.4,34.4,1.4,16.9,0.6,0.6,12.7,6],"1890":[23.2,45.5,1.2,17.2,0.6,0.5,11.7,10],"1900":[9.1,64.9,2.3,6.4,0.4,0.3,16.5,10],"1910":[3.9,64.2,8.9,6.0,0.3,0.2,16.6,9],"1920":[3.9,44.5,13.5,5.3,0.3,0.4,32.1,10],"1930":[0.3,38.9,19.8,0.0,0.1,0.1,40.7,1],"1940":[0.8,23.1,38.6,8.2,1.9,0.3,27.2,10],"1950":[2.8,13.8,43.6,11.8,6.2,0.4,21.4,9],"1960":[0.8,10.1,40.0,8.4,18.6,0.6,21.6,9],"1970":[0.3,0.7,10.5,39.9,43.5,0.4,4.8,10],"1980":[0.6,2.7,21.6,12.7,36.2,8.1,17.9,9],"1990":[1.8,3.0,10.6,15.1,32.4,17.9,19.1,10],"2000":[1.0,1.3,6.9,7.5,27.7,38.4,17.3,8],"2010":[0.3,0.6,6.6,1.3,21.3,54.5,15.3,8],"2020":[0.2,0.3,7.9,1.2,18.5,55.0,17.1,5]},"pry":{"1880":[28.7,49.2,2.2,7.9,1.3,0.3,10.3,8],"1890":[19.1,54.2,1.0,10.7,0.8,0.4,13.8,4],"1900":[11.9,66.5,3.4,2.6,0.5,0.3,14.9,6],"1910":[2.3,65.2,14.6,4.2,0.3,0.2,13.1,7],"1920":[5.3,42.1,15.9,22.0,1.7,0.3,12.7,5],"1930":[8.3,30.3,20.7,24.5,1.9,0.4,13.8,5],"1950":[11.1,2.8,14.6,52.0,1.8,1.3,16.5,4],"1960":[9.5,8.1,27.1,31.3,3.7,2.9,17.4,4],"1970":[3.3,2.0,42.8,10.1,25.5,2.2,14.1,1],"1980":[3.5,2.0,33.6,16.7,20.7,2.1,21.5,5],"1990":[1.5,1.8,21.3,12.0,36.8,6.1,20.4,8],"2000":[0.6,2.3,13.2,9.6,34.4,21.3,18.7,10],"2010":[0.8,1.5,10.1,4.9,25.0,38.0,19.8,10],"2020":[0.8,1.4,6.9,6.0,18.1,48.2,18.5,6]},"ury":{"1830":[53.1,19.1,0.7,5.3,0.5,0.4,21.0,8],"1840":[58.2,12.0,0.9,9.5,0.5,1.0,17.8,4],"1850":[52.9,23.9,1.5,5.1,0.6,0.3,15.7,8],"1860":[44.1,26.6,0.6,10.2,0.9,0.7,16.9,6],"1870":[36.4,25.0,1.7,11.7,1.3,1.2,22.6,7],"1880":[30.9,32.9,2.2,11.2,2.1,0.8,20.1,10],"1890":[14.5,44.2,1.9,21.5,0.8,0.4,16.6,9],"1900":[5.7,49.8,6.2,2.9,0.2,0.5,34.7,10],"1910":[0.9,39.8,11.8,7.0,0.3,0.2,40.0,10],"1920":[2.5,40.0,15.2,13.3,0.2,0.2,28.5,10],"1930":[6.9,20.9,19.7,28.4,2.3,0.9,21.0,10],"1940":[3.1,19.2,33.3,18.9,2.1,1.0,22.5,8],"1950":[1.7,12.1,47.3,9.6,6.4,0.5,22.5,10],"1960":[0.6,9.3,44.0,3.7,12.2,0.2,30.1,9],"1970":[1.4,2.9,39.7,2.9,24.0,0.3,28.8,4],"1990":[0.8,6.2,14.8,12.7,37.6,5.7,22.2,4],"2000":[1.2,3.4,9.9,6.5,34.5,10.8,33.6,9],"2010":[0.3,0.9,6.3,3.6,15.4,11.4,62.0,9],"2020":[0.1,1.0,5.2,3.4,7.5,26.0,56.8,7]},"ven":{"1830":[61.5,10.8,1.4,6.7,1.6,1.0,17.0,9],"1840":[55.8,12.3,1.8,9.4,1.6,1.1,17.9,10],"1850":[56.5,11.6,0.9,20.3,0.9,0.6,9.1,9],"1860":[44.3,19.2,1.0,17.6,1.3,0.5,16.2,5],"1870":[26.1,36.6,0.4,9.7,0.3,0.4,26.6,7],"1880":[16.9,38.5,0.7,6.7,0.3,0.4,36.6,10],"1890":[21.4,43.7,1.0,10.7,0.3,0.1,22.8,8],"1900":[28.9,24.6,1.8,27.3,0.9,1.0,15.6,6],"1910":[23.1,26.2,4.2,21.1,1.0,0.6,23.9,10],"1920":[18.8,33.5,9.6,12.4,0.9,0.7,24.1,10],"1930":[8.9,27.6,28.0,10.5,0.8,0.4,23.8,10],"1940":[4.1,15.6,36.9,22.1,4.5,0.4,16.4,6],"1950":[1.1,9.3,48.3,10.2,5.8,1.0,24.3,4],"1960":[1.1,6.0,41.7,9.7,30.1,0.2,11.2,9],"1970":[1.4,4.8,29.4,13.1,41.8,0.8,8.7,9],"1980":[1.5,1.3,11.0,24.4,50.3,3.2,8.4,1],"1990":[2.0,6.6,14.3,16.7,41.6,7.8,11.1,6],"2000":[0.5,1.1,4.0,6.5,10.6,7.6,69.8,10],"2010":[0.2,0.5,1.6,7.3,12.6,9.1,68.9,8],"2020":[0.9,0.5,0.9,7.9,14.5,12.0,63.2,7]}};
+    this.state = { d: 1940, playing: false };
+  }
+  componentWillUnmount() {
+    if (this.timer) clearInterval(this.timer);
+  }
+  renderVals() {
+    const names7 = ['War and Peace', 'Public Administration', 'Infrastructure', 'National Identity', 'Economic Development', 'Social Welfare', 'Other topics'];
+    const colors = ['#b9472f', '#d99a2b', '#7b62c4', '#3a9a62', '#2d6fbf', '#e07fa0', '#d9d7cf'];
+    const ink = ['#FFFFFF', '#17181B', '#FFFFFF', '#17181B', '#FFFFFF', '#17181B', '#17181B'];
+    const docsByDecade = { 1810: 1, 1820: 12, 1830: 55, 1840: 51, 1850: 66, 1860: 66, 1870: 73, 1880: 84, 1890: 90, 1900: 96, 1910: 99, 1920: 95, 1930: 87, 1940: 78, 1950: 86, 1960: 98, 1970: 92, 1980: 93, 1990: 110, 2000: 120, 2010: 123, 2020: 90 };
+    const layout = [
+      ['mex', 'Mexico', 0, 0], ['dom', 'Dominican Rep.', 3, 0], ['cri', 'Costa Rica', 1, 1], ['col', 'Colombia', 2, 1], ['ven', 'Venezuela', 3, 1],
+      ['ecu', 'Ecuador', 1, 2], ['bra', 'Brazil', 3, 2], ['per', 'Peru', 1, 3], ['pry', 'Paraguay', 2, 3], ['chl', 'Chile', 1, 4], ['arg', 'Argentina', 2, 4], ['ury', 'Uruguay', 3, 4]
+    ];
+    const d = this.state.d;
+    const lead = (v) => { let k = 0; for (let i = 1; i < 6; i++) { if (v[i] > v[k]) k = i; } return k; };
+    const counts = {};
+    let withData = 0;
+    const tiles = layout.map((t) => {
+      const pos = 'left: ' + (t[2] * 160) + 'px; top: ' + (t[3] * 122) + 'px; ';
+      if (t[0] === 'bra') {
+        return { name: t[1], lead: 'Portuguese texts, outside the model', style: pos + 'background: #E9E7E1; color: #3F4247; box-shadow: inset 0 0 0 1px #D2CFC6', hasBar: false, segs: [] };
+      }
+      const v = (this.data[t[0]] || {})[d];
+      if (!v) {
+        return { name: t[1], lead: 'No message in the model', style: pos + 'background: transparent; color: #5A5D63; box-shadow: inset 0 0 0 1.5px #C9C6BD', hasBar: false, segs: [] };
+      }
+      const k = lead(v);
+      counts[k] = (counts[k] || 0) + 1;
+      withData += 1;
+      return {
+        name: t[1],
+        lead: names7[k] + ' · ' + Math.round(v[k]) + '%',
+        style: pos + 'background: ' + colors[k] + '; color: ' + ink[k],
+        hasBar: true,
+        segs: v.slice(0, 7).map((s, i) => ({ style: 'width: ' + s + '%; background: ' + colors[i], title: names7[i] + ': ' + s + '%' }))
+      };
+    });
+    let top = -1;
+    Object.keys(counts).forEach((k) => { if (top < 0 || counts[k] > counts[top]) top = Number(k); });
+    const summary = withData ? names7[top] + ' led in ' + counts[top] + ' of the ' + withData + ' countries with messages in the model.' : 'No messages in the model for this decade.';
+    const strip = [];
+    for (let dd = 1820; dd <= 2020; dd += 10) {
+      const c = {};
+      Object.keys(this.data).forEach((cc) => { const v = this.data[cc][dd]; if (v) { const k = lead(v); c[k] = (c[k] || 0) + 1; } });
+      let m = -1;
+      Object.keys(c).forEach((k) => { if (m < 0 || c[k] > c[m]) m = Number(k); });
+      strip.push({
+        title: dd + 's: ' + (m >= 0 ? names7[m] + ' led most countries' : 'no messages'),
+        style: 'background: ' + (m >= 0 ? colors[m] : '#E1DFD8') + (dd === d ? '; box-shadow: 0 0 0 2px #F6F5F1, 0 0 0 4px #17181B' : ''),
+        pick: () => this.setState({ d: dd })
+      });
+    }
+    const step = (k) => { const nd = d + 10 * k; this.setState({ d: nd > 2020 ? 1820 : (nd < 1820 ? 2020 : nd) }); };
+    const playing = !!this.state.playing;
+    return {
+      tiles: tiles, strip: strip, summary: summary, label: d + 's', decade: d,
+      setDecade: (e) => this.setState({ d: Number(e.target.value) }),
+      prev: () => step(-1), next: () => step(1),
+      playing: playing, notPlaying: !playing, playLabel: playing ? 'Pause' : 'Play',
+      togglePlay: () => {
+        if (this.timer) { clearInterval(this.timer); this.timer = null; this.setState({ playing: false }); return; }
+        this.timer = setInterval(() => { const nd = this.state.d + 10; this.setState({ d: nd > 2020 ? 1820 : nd }); }, 900);
+        this.setState({ playing: true });
+      },
+      downloadTitle: 'The ' + docsByDecade[d] + ' messages of the ' + d + 's',
+      downloadButton: 'Download the ' + d + 's · ZIP'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idea: who said it?</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<a id="sketch-back" href="../sketches.html" style="position:fixed;right:16px;bottom:16px;z-index:2147483647;padding:8px 14px;border-radius:999px;background:#17171A;color:#FFFFFF;font:600 13px/1.2 Archivo,'Helvetica Neue',Arial,sans-serif;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.2)">&larr; All sketches</a>
+<script>if(location.hash==="#thumb")document.getElementById("sketch-back").hidden=true</script>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&amp;family=Alegreya+Sans:wght@400;500;700;800&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#0F3B3A;text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:#08201F;text-decoration-thickness:2px}
+</style>
+</helmet>
+<div style="background: #FFFFFF; color: #141617; font-family: 'Alegreya Sans', 'Helvetica Neue', Arial, sans-serif">
+
+<header style="border-bottom: 1px solid #E4E6E6">
+<div style="max-width: 1280px; margin: 0 auto; padding: 16px 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px">
+<a href="Idea-Weave.dc.html" style="display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; text-decoration: none; color: #141617">
+<span style="font-size: 22px; font-weight: 800">Mensajes</span>
+<span style="font-size: 15px; color: #5B6061">Latin American presidential speeches, 1819–2026</span>
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; font-size: 16px">
+<a href="Grid-Home.dc.html" style="color: #141617; text-decoration: none">Browse</a>
+<a href="Idea-Words.dc.html" style="color: #141617; text-decoration: none">Words</a>
+<a href="Idea-Quiz.dc.html" aria-current="page" style="color: #141617; text-decoration: none; font-weight: 700; border-bottom: 2px solid #141617; padding: 6px 0">Quiz</a>
+<a href="Release.dc.html" style="display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 6px; background: #0F3B3A; color: #FFFFFF; text-decoration: none; font-weight: 700">Download the data</a>
+</nav>
+</div>
+</header>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 34px 32px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-family: Alegreya, Georgia, serif; font-size: clamp(34px, 4vw, 50px); font-weight: 700; line-height: 1.05">Who said it?</h1>
+<p style="margin: 0; max-width: 720px; font-size: 19px; line-height: 1.5; color: #3E4344">Each quote comes from a message in the collection. Choose the country and decade. Every answer links to the full message.</p>
+</section>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 0; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+<div style="flex: 3 1 640px; min-width: 0; border-radius: 16px; background: #0F3B3A; color: #F2F7F6; padding: 30px 32px 32px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px">
+<p style="margin: 0; font-size: 15px; font-weight: 700; color: #A8CFCB">{{progress}}</p>
+<p style="margin: 0; font-size: 15px; color: #A8CFCB">Score: <span style="font-weight: 800; color: #F2F7F6">{{scoreText}}</span></p>
+</div>
+<div role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="{{answered}}" style="height: 6px; border-radius: 3px; background: #1F5654; overflow: hidden"><div style="height: 100%; border-radius: 3px; background: #7FE0C9; {{barStyle}}"></div></div>
+<blockquote lang="es" style="margin: 0; font-family: Alegreya, Georgia, serif; font-style: italic; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.35; text-wrap: pretty">“{{quote}}”</blockquote>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 10px">
+<sc-for list="{{options}}" as="o" hint-placeholder-count="4">
+<button type="button" onClick="{{o.pick}}" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 56px; padding: 0 18px; border-radius: 10px; font-family: inherit; font-size: 18px; font-weight: 700; text-align: left; cursor: pointer; {{o.style}}"><span>{{o.label}}</span><span style="font-size: 14px; font-weight: 700">{{o.mark}}</span></button>
+</sc-for>
+</div>
+<sc-if value="{{revealed}}" hint-placeholder-val="{{false}}">
+<div style="border-top: 1px solid #2B6663; padding-top: 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px">
+<div style="min-width: 0">
+<p style="margin: 0; font-size: 20px; font-weight: 800">{{who}}</p>
+<p style="margin: 4px 0 0; font-size: 16px; line-height: 1.45; color: #CFE5E2">{{context}}</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a href="Grid-Speech.dc.html" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 16px; box-sizing: border-box; border-radius: 8px; border: 1px solid #A8CFCB; color: #F2F7F6; text-decoration: none; font-size: 16px; font-weight: 700">Read the message</a>
+<button type="button" onClick="{{nextQ}}" style="min-height: 46px; padding: 0 18px; border: 0; border-radius: 8px; background: #7FE0C9; color: #0B2B2A; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer">{{nextLabel}}</button>
+</div>
+</div>
+</sc-if>
+</div>
+
+<aside style="flex: 2 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="padding: 24px; border-radius: 16px; border: 1px solid #E4E6E6; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-size: 14px; font-weight: 700; color: #5B6061">For teachers</p>
+<p style="margin: 0; font-family: Alegreya, Georgia, serif; font-size: 26px; font-weight: 700; line-height: 1.15">A classroom pack</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3E4344">Fifty quotes with answers, sources and a short note on each era. A printable PDF and a CSV, in Spanish and English.</p>
+<a href="Release.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; background: #0F3B3A; color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 700">Download the pack</a>
+</div>
+<div style="padding: 24px; border-radius: 16px; background: #F1F6F5; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-size: 14px; font-weight: 700; color: #5B6061">For researchers</p>
+<p style="margin: 0; font-family: Alegreya, Georgia, serif; font-size: 26px; font-weight: 700; line-height: 1.15">Every quote comes from the data</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3E4344">Download the 1,765 messages and the catalogue that records each one's country, year, president and source.</p>
+<a href="Release.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; box-sizing: border-box; border-radius: 8px; border: 1px solid #0F3B3A; color: #0F3B3A; text-decoration: none; font-size: 16px; font-weight: 700">Download the collection</a>
+</div>
+</aside>
+</section>
+
+<section style="max-width: 1280px; margin: 0 auto; padding: 24px 32px 48px; box-sizing: border-box">
+<p style="margin: 0; font-size: 14px; color: #5B6061">Quotes keep the spelling of the source. A new set of quotes appears each day.</p>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 0, picked: null, score: 0, answered: 0, done: false };
+  }
+  renderVals() {
+    const Q = [
+      { q: 'Al mismo tiempo que el pueblo ha vuelto a disfrutar de la libertad de sus instituciones, ha comenzado a gozar también de los beneficios de la paz.', opts: ['Argentina, 1860s', 'Mexico, 1860s', 'Chile, 1840s', 'Peru, 1890s'], a: 1, who: 'Benito Juárez, Mexico, 1867', ctx: 'A message from the year the republic was restored, after the fall of Maximilian’s empire.' },
+      { q: 'Veo ya cerca, señor, el día en que por fin vuelva a gozar del reposo y felicidad doméstica de que estoy privado después de veinte años consagrados a las fatigas de la guerra y al cuidado de los intereses públicos.', opts: ['Colombia, 1820s', 'Chile, 1830s', 'Venezuela, 1830s', 'Peru, 1830s'], a: 2, who: 'José Antonio Páez, Venezuela, 1830', ctx: 'A written message to the congress that founded the Venezuelan state, read by another person.' },
+      { q: 'Se pavimentaron 518 kilómetros de carreteras y se atendió a la conservación de 11.000 kilómetros de estas vías.', opts: ['Peru, 1950s', 'Venezuela, 1950s', 'Argentina, 1940s', 'Mexico, 1960s'], a: 1, who: 'Marcos Pérez Jiménez, Venezuela, 1956', ctx: 'Infrastructure took 48 percent of his messages.' },
+      { q: 'Las obras públicas constituyen por su parte el mayor impulso que ha recibido la Nación para que ella salga del retraso en que vivía y ofrezca hoy el espectáculo de un país en franco progreso.', opts: ['Dominican Republic, 1960s', 'Paraguay, 1960s', 'Peru, 1950s', 'Venezuela, 1950s'], a: 1, who: 'Alfredo Stroessner, Paraguay, 1960', ctx: 'Stroessner has 31 documents in the collection, more than any other president.' },
+      { q: 'El desarrollo de una nación tiene un precio de sacrificio que todos tenemos que pagar.', opts: ['Chile, 1970s', 'Venezuela, 1970s', 'Peru, 1970s', 'Argentina, 1950s'], a: 2, who: 'Juan Velasco Alvarado, Peru, 1970', ctx: 'His second annual message after the 1968 coup.' },
+      { q: 'No se puede pedir créditos nuevos para pagar deuda anterior.', opts: ['Argentina, 1980s', 'Peru, 1980s', 'Mexico, 1980s', 'Venezuela, 1990s'], a: 1, who: 'Alan García, Peru, 1986', ctx: 'A message from the years of the Latin American debt crisis.' },
+      { q: 'Me ha tocado ser el presidente de Internet y las nuevas tecnologías.', opts: ['Chile, 1990s', 'Mexico, 2000s', 'Uruguay, 2000s', 'Argentina, 2000s'], a: 3, who: 'Fernando de la Rúa, Argentina, 2000', ctx: 'Mentions of internet rise from the late 1990s.' },
+      { q: 'Es indudable que saldremos de la pandemia con un mejor sistema de salud.', opts: ['Argentina, 2020s', 'Colombia, 2020s', 'Mexico, 2020s', 'Chile, 2020s'], a: 2, who: 'Andrés Manuel López Obrador, Mexico, 2020', ctx: 'Social welfare is the leading topic in ten of the eleven countries in the 2020s.' }
+    ];
+    const st = this.state;
+    const cur = Q[st.i];
+    const revealed = st.picked !== null;
+    const options = cur.opts.map((label, k) => {
+      let style = 'background: #FFFFFF; color: #0B2B2A; border: 2px solid #FFFFFF';
+      let mark = '';
+      if (revealed) {
+        if (k === cur.a) { style = 'background: #CFEFD9; color: #0B3D1E; border: 2px solid #7FE0C9'; mark = '✓ Correct'; }
+        else if (k === st.picked) { style = 'background: #F6D6D6; color: #5A1010; border: 2px solid #F6D6D6'; mark = '✕ Not this one'; }
+        else { style = 'background: #1F5654; color: #A8CFCB; border: 2px solid #1F5654'; }
+      }
+      return {
+        label: label, mark: mark, style: style,
+        pick: () => {
+          if (this.state.picked !== null) return;
+          this.setState({ picked: k, score: this.state.score + (k === cur.a ? 1 : 0), answered: this.state.answered + 1 });
+        }
+      };
+    });
+    const last = st.i === Q.length - 1;
+    return {
+      progress: 'Quote ' + (st.i + 1) + ' of ' + Q.length,
+      scoreText: st.score + ' / ' + st.answered,
+      answered: st.answered,
+      barStyle: 'width: ' + (st.answered / Q.length * 100) + '%',
+      quote: cur.q, options: options, revealed: revealed,
+      who: cur.who, context: cur.ctx,
+      nextLabel: last ? 'Play again' : 'Next quote',
+      nextQ: () => {
+        if (last) { this.setState({ i: 0, picked: null, score: 0, answered: 0 }); return; }
+        this.setState({ i: st.i + 1, picked: null });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
