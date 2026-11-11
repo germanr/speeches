@@ -38,15 +38,13 @@ a:hover{color:#000000;text-decoration-thickness:2px}
 </header>
 
 <sc-if value="{{showBanner}}" hint-placeholder-val="{{true}}">
-<div style="max-width: 1280px; margin: 0 auto; padding: 28px 32px 0; box-sizing: border-box">
-<figure style="margin: 0">
-<img src="img/yours_latin_american_speeches_archive.jpg" alt="Illustration of a president at a podium beside pages of text and a map of Latin America" style="display: block; width: 100%; aspect-ratio: 28 / 9; object-fit: cover; object-position: 50% 62%; border-radius: 4px">
-<figcaption style="margin-top: 8px; font-size: 12px; color: #6B6862">Illustration</figcaption>
+<figure style="position: relative; max-width: 1280px; margin: 0 auto -64px; padding: 20px 32px 0; box-sizing: border-box">
+<img src="img/codex_speakers_engraving.jpg" alt="Illustration of five presidents at lecterns: Benito Juárez, Juan Domingo Perón, Salvador Allende, Álvaro Uribe and Michelle Bachelet" style="display: block; width: 100%; height: clamp(170px, 24vw, 300px); object-fit: cover; object-position: center 80%; -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 100%); mask-image: linear-gradient(to bottom, #000 45%, transparent 100%)">
+<figcaption style="position: absolute; right: 38px; top: 26px; font-size: 11px; color: #4A4844; background: rgba(252,252,250,0.88); padding: 2px 6px; border-radius: 3px">Illustration made with AI from public photographs</figcaption>
 </figure>
-</div>
 </sc-if>
 
-<section style="max-width: 1280px; margin: 0 auto; padding: 36px 32px 0; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: flex-start">
+<section style="position: relative; max-width: 1280px; margin: 0 auto; padding: 36px 32px 0; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: flex-start">
 <div style="flex: 1 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
 <p style="margin: 0; font-size: 14px; color: #6B6862">Working paper · [MONTH YEAR]</p>
 <h1 style="margin: 0; font-family: Piazzolla, Georgia, serif; font-size: clamp(34px, 4.4vw, 52px); font-weight: 600; line-height: 1.08; letter-spacing: -0.01em; text-wrap: balance">From Warfare to Welfare: Leaders, Eras, and the Evolution of Policy Attention</h1>
@@ -57,7 +55,7 @@ a:hover{color:#000000;text-decoration-thickness:2px}
 <a href="#paper" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; box-sizing: border-box; border-radius: 6px; border: 1px solid #17171A; color: #17171A; text-decoration: none; font-size: 15px; font-weight: 600">Read the paper (PDF)</a>
 </div>
 </div>
-<aside style="flex: 0 1 360px; min-width: 0; border-left: 1px solid #E2E0D8; padding-left: 28px; display: flex; flex-direction: column; gap: 14px">
+<aside style="flex: 0 1 360px; min-width: 0; margin-top: 64px; border-left: 1px solid #E2E0D8; padding-left: 28px; display: flex; flex-direction: column; gap: 14px">
 <p style="margin: 0; font-size: 15px; font-weight: 600">On this site</p>
 <dl style="margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 10px 20px; font-size: 15px">
 <dt style="color: #6B6862">Speeches</dt>
@@ -392,7 +390,7 @@ a:hover{color:#000000;text-decoration-thickness:2px}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"showBanner":{"editor":"boolean","default":true},"$preview":{"width":1280,"height":5500}}'>
+<script type="text/x-dc" data-dc-script data-props='{"showBanner":{"editor":"boolean","default":true},"$preview":{"width":1280,"height":5340}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
